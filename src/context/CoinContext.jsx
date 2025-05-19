@@ -8,7 +8,7 @@ const CoinContextProvider = (props)=>{
 
 
     return(
-        <CoinContext.Provider value={}>
+        <CoinContext.Provider value={contextValue}>
             {props.children}
         </CoinContext.Provider>
     )
