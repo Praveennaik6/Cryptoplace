@@ -4,10 +4,10 @@ import { CoinContext } from '../../context/CoinContext'
 
 const Home = () => {
   const {allCoin, currency} = useContext(CoinContext);
-  const[displaycoin, setDisplaycoin]=useState([]);
+  const[displayCoin, setDisplayCoin]=useState([]);
 
   useEffect(()=>{
-    setDisplaycoin(allCoin);
+    setDisplayCoin(allCoin);
   },[allCoin])
 
   return (
@@ -38,6 +38,7 @@ const Home = () => {
                   <img src={item.image} alt=''/>
                   <p>{item.name + "_" + item.symbol}</p>
                 </div>
+                <p>{currency.symbol}{item.current_price}</p>
                 </div>
 
             ))
