@@ -11,20 +11,20 @@ const {setCurrency} = useContext(CoinContext)
 
 const currencyHandler = (event) => {
   switch (event.target.value){
-    case "USD":{
-      setCurrency({name:"USD", symbol:"$"})
+    case "usd":{
+      setCurrency({name:"usd", symbol:"$"})
       break;
     }
-    case "EUR":{
-      setCurrency({name:"EUR", symbol:"€"})
+    case "eur":{
+      setCurrency({name:"eur", symbol:"€"})
       break;
     }
-    case "INR":{
-      setCurrency({name:"INR", symbol:"₹"})
+    case "inr":{
+      setCurrency({name:"inr", symbol:"₹"})
       break;
     }
     default:{
-      setCurrency({name:"USD", symbol:"$"})
+      setCurrency({name:"usd", symbol:"$"})
       break;
     }
   }
@@ -32,7 +32,7 @@ const currencyHandler = (event) => {
 
   return (
     <div className='navbar'>
-        <img src={logo} alt="" className='logo' />
+        <img src={logo}  className='logo' />
         <ul>
             <li>Home</li>
             <li>Features</li>
@@ -45,7 +45,7 @@ const currencyHandler = (event) => {
                 <option value="eur">EUR</option>
                 <option value="inr">INR </option>
             </select>
-            <button>Sign Up <img src="" alt="" /></button>
+            <button>Sign Up</button>
         </div>
       
     </div>
