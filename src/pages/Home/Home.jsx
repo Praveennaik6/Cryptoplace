@@ -34,9 +34,9 @@ const Home = () => {
                 Sign up to explore more about cryptos.
             </p>
             <form onSubmit={searchHandler}>
-                <input onChange={inputHandler} value={input} type="text" placeholder='Search Crypto..' required/>
+                <input onChange={inputHandler} list='coinlist' value={input} type="text" placeholder='Search Crypto..' required/>
                 <datalist id='coinlist'>
-                  {allCoin.map((item, index)=>(<option key={}))}
+                  {allCoin.map((item, index)=>(<option key={index} value={item.name}/>))}
                 </datalist>
 
                  <button type='submit'>Search</button>
