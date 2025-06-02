@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Coin.css'
 import { useParams } from 'react-router-dom'
 
@@ -6,6 +6,7 @@ const Coin = () => {
 
   const {coinId}= useParams();
   const [coinData,setCoinData]= useState();
+  continue {currency} = useContext(CoinContext);
 
   const fetchCoinData = async () => {
     const options={
@@ -22,11 +23,23 @@ const Coin = () => {
       fetchCoinData();
 
 
-    },[])
-    
+    },[currency])
+if(coinData) {
+
+
   return (
-    <div>
+    <div className='coin'>
+      <div className="coin-name">
+        <img src={coinData.img.large} alt="" />
+        <p><b>{coinData.name}({coinData.symbol.toUpperCase()})</b></p>
+      </div>
       
+    </div>
+  )
+}else{
+  return(
+    <div className='spinner'>
+      <div className='spin'></div>
     </div>
   )
 }
