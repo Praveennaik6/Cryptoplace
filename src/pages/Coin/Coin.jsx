@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import './Coin.css'
 import { useParams } from 'react-router-dom'
 import { response } from 'express';
+import LineChart from '../../components/LineChart/LineChart';
 
 const Coin = () => {
 
@@ -25,7 +26,7 @@ const Coin = () => {
     const fetchHistoricalData = async () => {
       const options = {method: 'GET', headers: {accept: 'application/json'}};
 
-fetch('https://pro-api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=10', options)
+fetch(`https://pro-api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=${currency.name}&days=10`, options)
   .then(response => response.json())
   .then(response => setHistoricalData(response))
   .catch(err => console.error(err));
@@ -33,10 +34,11 @@ fetch('https://pro-api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_curren
       }
     useEffect(() => {
       fetchCoinData();
+      fetchHistoricalData();
 
 
     },[currency])
-if(coinData) {
+if(coinData && historicalData) {
 
 
   return (
@@ -44,6 +46,10 @@ if(coinData) {
       <div className="coin-name">
         <img src={coinData.img.large} alt="" />
         <p><b>{coinData.name}({coinData.symbol.toUpperCase()})</b></p>
+      </div>
+      <div className='coin-chart'>
+        <LineChart historicalData={historicalData}/>
+
       </div>
       
     </div>
@@ -55,5 +61,5 @@ if(coinData) {
     </div>
   )
 }
-
+}
 export default Coin
