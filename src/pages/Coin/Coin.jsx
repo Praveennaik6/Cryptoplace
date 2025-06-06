@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './Coin.css'
 import { useParams } from 'react-router-dom'
+import { response } from 'express';
 
 const Coin = () => {
 
   const {coinId}= useParams();
   const [coinData,setCoinData]= useState();
-  continue {currency} = useContext(CoinContext);
+  const [historicalData,setHistoricalData]= useState();
+  const {currency} = useContext(CoinContext);
 
   const fetchCoinData = async () => {
     const options={
@@ -19,6 +21,16 @@ const Coin = () => {
     .catch(err => console.error(err));
      
     }
+
+    const fetchHistoricalData = async () => {
+      const options = {method: 'GET', headers: {accept: 'application/json'}};
+
+fetch('https://pro-api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=10', options)
+  .then(response => response.json())
+  .then(response => setHistoricalData(response))
+  .catch(err => console.error(err));
+       
+      }
     useEffect(() => {
       fetchCoinData();
 
